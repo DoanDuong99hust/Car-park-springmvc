@@ -49,11 +49,11 @@
                             </div>
                             <div>
                                 <select class="p-1 m-1 border rounded" name="tripId" id="tripId">
-<%--                                    <c:forEach var="item" items="trips.value">--%>
-<%--                                        <option value="${item.tripId}">${item.destination}</option>>--%>
-<%--                                    </c:forEach>>--%>
-                                    <option value="1">Hà Giang</option>
-                                    <option value="2">Lào Cai</option>
+                                    <c:forEach var="item" items="${trips}">
+                                        <option value="${item.tripId}">${item.destination}</option>>
+                                    </c:forEach>>
+<%--                                    <option value="1">Hà Giang</option>--%>
+<%--                                    <option value="2">Lào Cai</option>--%>
                                 </select>
                             </div>
                             <div>
@@ -97,7 +97,7 @@
                 function addOrUpdateData() {
                     var data = {};
                     data["officeName"] = $('#officeName').val()
-                    data["tripId"] = parseInt($('select#tripId').children("option:selected").val())
+                    data["tripId"] = $('select#tripId').children("option:selected").val()
                     data["officePhone"] = $('#officePhone').val()
                     data["officePlace"] = $('select#officePlace').children("option:selected").val()
                     data["officePrice"] = $('#officePrice').val()
@@ -152,7 +152,7 @@
                         dataType: 'json',
                         success: function(result) {
                             <%--window.location.href = "${NewURL}?type=edit&id=" + result.officeId + "&message=update_success";--%>
-                            window.location.href = "${NewURL}?page=1&limit=2"
+                            <%--window.location.href = "${NewURL}?page=1&limit=2"--%>
                         },
                         error: function(error) {
                             window.location.href = "${NewURL}?page=1&limit=2&message=error_system";

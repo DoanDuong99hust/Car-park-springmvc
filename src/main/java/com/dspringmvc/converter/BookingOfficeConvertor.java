@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookingOfficeConvertor {
 
+    @Autowired
+    private ITripService iTripService;
+
     public BookingOfficeDTO toDto(BookingOfficeEntity bookingOfficeEntity) {
         BookingOfficeDTO results = new BookingOfficeDTO();
         results.setOfficeId(bookingOfficeEntity.getOfficeId());

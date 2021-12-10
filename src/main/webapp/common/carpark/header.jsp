@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.dspringmvc.util.SecurityUtils" %><%--
   Created by IntelliJ IDEA.
   User: Shisui
   Date: 10/24/2021
@@ -13,8 +13,8 @@
     <div class="d-flex justify-content-between p-2">
         <span id="backto-edit" class="text-secondary"><i class="fas fa-users"></i> Car park</span>
         <div class="user-option text-primary">
-            <span>Welcome, ${USERMODEL.fullName}</span>
-            <a href="<c:url value="/logout?action=logout"/> ">Logout <i class="fas fa-sign-out-alt"></i></a>
+            <span>Welcome, <%=SecurityUtils.getPrincipal().getFullName()%></span>
+            <a href="<c:url value="/logout"/> ">Logout <i class="fas fa-sign-out-alt"></i></a>
         </div>
     </div>
 </div>

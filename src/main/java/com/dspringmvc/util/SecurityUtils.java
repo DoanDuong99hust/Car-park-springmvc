@@ -3,16 +3,17 @@ package com.dspringmvc.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dspringmvc.dto.MyUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
 public class SecurityUtils {
 	
-//	public static MyUser getPrincipal() {
-//		MyUser myUser = (MyUser) (SecurityContextHolder.getContext()).getAuthentication().getPrincipal();
-//        return myUser;
-//    }
+	public static MyUser getPrincipal() {
+		MyUser myUser = (MyUser) (SecurityContextHolder.getContext()).getAuthentication().getPrincipal();
+        return myUser;
+    }
 	
 	@SuppressWarnings("unchecked")
 	public static List<String> getAuthorities() {

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TripService implements ITripService {
@@ -69,6 +71,17 @@ public class TripService implements ITripService {
             models.add(tripConverter.toDto(trip));
         }
         return models;
+    }
+
+    @Override
+    public List<String> findAllDestination() {
+        List<String> results = new ArrayList<>();
+        List<TripEntity> tripEntityList = iTripRepository.findAll();
+        for (TripEntity trip: tripEntityList
+             ) {
+            results.add(trip.getDestination());
+        }
+        return results;
     }
 
     @Override

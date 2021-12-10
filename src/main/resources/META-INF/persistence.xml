@@ -7,5 +7,7 @@
         <class>com.dspringmvc.entity.ParkingLotEntity</class>
         <class>com.dspringmvc.entity.CarEntity</class>
         <class>com.dspringmvc.entity.TicketEntity</class>
+        <class>com.dspringmvc.entity.UserEntity</class>
+        <class>com.dspringmvc.entity.RoleEntity</class>
     </persistence-unit>
 </persistence>

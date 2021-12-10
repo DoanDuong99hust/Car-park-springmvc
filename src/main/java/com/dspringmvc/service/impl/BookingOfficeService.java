@@ -3,7 +3,9 @@ package com.dspringmvc.service.impl;
 import com.dspringmvc.converter.BookingOfficeConvertor;
 import com.dspringmvc.dto.BookingOfficeDTO;
 import com.dspringmvc.entity.BookingOfficeEntity;
+import com.dspringmvc.entity.TripEntity;
 import com.dspringmvc.repository.IBookingOfficeRepository;
+import com.dspringmvc.repository.ITripRepository;
 import com.dspringmvc.service.IBookingOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,15 +24,20 @@ public class BookingOfficeService implements IBookingOfficeService {
     @Autowired
     private BookingOfficeConvertor bookingOfficeConvertor;
 
+    @Autowired
+    private ITripRepository iTripRepository;
+
     @Override
     @Transactional
     public BookingOfficeDTO save(BookingOfficeDTO bookingOffice) {
+        TripEntity tripEntity = iTripRepository.findOne(bookingOffice.getTripId());
         BookingOfficeEntity bookingOfficeEntity = new BookingOfficeEntity();
         if (bookingOffice.getOfficeId() != null) {
             BookingOfficeEntity oldOffice = iBookingOfficeRepository.findOne(bookingOffice.getOfficeId());
             bookingOfficeEntity = bookingOfficeConvertor.toEntity(oldOffice, bookingOffice);
         } else {
             bookingOfficeEntity = bookingOfficeConvertor.toEntity(bookingOffice);
+            bookingOfficeEntity.setTrip(tripEntity);
         }
         return bookingOfficeConvertor.toDto(iBookingOfficeRepository.save(bookingOfficeEntity));
     }
